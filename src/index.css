@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ----------------------------------------------------------------------
+     Brand color system (edit here to re-theme the whole site).
+     Values are space-separated "R G B" so Tailwind's opacity modifiers
+     (e.g. bg-plum-950/80) can apply alpha via rgb(var(--x) / <alpha>).
+     ---------------------------------------------------------------------- */
+  --color-plum-50: 245 238 251;
+  --color-plum-100: 231 212 242;
+  --color-plum-200: 204 166 226;
+  --color-plum-300: 172 116 207;
+  --color-plum-400: 138 75 184;
+  --color-plum-500: 109 47 156;
+  --color-plum-600: 84 34 125;
+  --color-plum-700: 66 28 98;
+  --color-plum-800: 45 12 66;
+  --color-plum-900: 35 7 51;
+  --color-plum-950: 23 4 34;
+
+  --color-saffron-50: 255 251 234;
+  --color-saffron-100: 255 243 196;
+  --color-saffron-200: 255 229 138;
+  --color-saffron-300: 255 212 82;
+  --color-saffron-400: 255 212 82;
+  --color-saffron-500: 255 196 61;
+  --color-saffron-600: 217 148 0;
+  --color-saffron-700: 168 110 0;
+
+  --color-berry-50: 255 240 242;
+  --color-berry-100: 255 219 225;
+  --color-berry-200: 255 179 192;
+  --color-berry-300: 255 131 153;
+  --color-berry-400: 255 107 133;
+  --color-berry-500: 255 77 109;
+  --color-berry-600: 200 28 71;
+  --color-berry-700: 156 23 57;
+
+  --color-cream: 251 246 238;
+  --color-ink: 36 26 46;
+
+  /* Footer tone — warm espresso/plum, not the hero's brand purple, so the
+     footer reads as "evening cafe" rather than a repeat of the hero. */
+  --color-char-900: 43 32 41;
+  --color-char-950: 36 26 36;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--color-cream));
+  color: rgb(var(--color-ink));
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgb(var(--color-saffron-400));
+  color: rgb(var(--color-plum-950));
+}
+
+* {
+  scrollbar-color: rgb(var(--color-plum-500)) transparent;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--color-saffron-500));
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@layer utilities {
+  .text-gradient-warm {
+    background-image: linear-gradient(95deg, #ffd452 0%, #ffb545 45%, #ff8a63 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-grain {
+    position: relative;
+  }
+  .bg-grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .balance {
+    text-wrap: balance;
+  }
+
+  .container-px {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  }
+}
