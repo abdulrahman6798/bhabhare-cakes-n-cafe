@@ -1,17 +1,19 @@
+import { Link } from 'react-router-dom'
 import { Wheat, Flame, PenTool, PartyPopper } from 'lucide-react'
 import Reveal from './ui/Reveal.jsx'
 import SectionHeading from './ui/SectionHeading.jsx'
+import Button from './ui/Button.jsx'
 import { whyBhabhare } from '../data/cafeData.js'
 
 const icons = { Wheat, Flame, PenTool, PartyPopper }
 
-export default function WhyBhabhare() {
+export default function WhyBhabhare({ showButton = false, ctaLabel = 'Why Choose Us?', ctaTo = '/why-bhabhare' }) {
   return (
-    <section id="why-us" className="scroll-mt-20 bg-cream py-20 sm:py-28">
+    <section className="bg-cream py-20 sm:py-28">
       <div className="container">
         <SectionHeading
-          eyebrow="Why Bhabhare"
-          title="Baked With Care, Every Time"
+          eyebrow="Why Choose Us"
+          title="Why Cake's N Cafe?"
           description="A few simple things we never compromise on."
         />
 
@@ -29,6 +31,14 @@ export default function WhyBhabhare() {
             )
           })}
         </div>
+
+        {showButton && (
+          <Reveal delay={0.2} className="mt-10 flex justify-center">
+            <Button as={Link} to={ctaTo} variant="outline" size="lg">
+              {ctaLabel}
+            </Button>
+          </Reveal>
+        )}
       </div>
     </section>
   )

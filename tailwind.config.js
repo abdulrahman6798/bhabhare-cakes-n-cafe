@@ -33,6 +33,8 @@ export default {
       },
       fontFamily: {
         display: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
+        editorial: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
+        dm: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       boxShadow: {

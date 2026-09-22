@@ -27,8 +27,8 @@ export default function Button({
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.97 }}
-      transition={{ duration: 0.15 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
       className="inline-block"
     >
       <Tag
@@ -40,7 +40,7 @@ export default function Button({
           <ArrowRight
             size={16}
             strokeWidth={2.5}
-            className="transition-transform duration-200 group-hover:translate-x-0.5"
+            className="transition-transform duration-200 ease-out group-hover:translate-x-1"
           />
         )}
       </Tag>

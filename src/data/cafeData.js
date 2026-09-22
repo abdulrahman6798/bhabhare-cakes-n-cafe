@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- *  BHABHARE CAKES & CAFE — DEMO / EDITABLE BUSINESS DATA
+ *  CAKE'S N CAFE — DEMO / EDITABLE BUSINESS DATA
  * ============================================================================
  *  Everything the cafe owner will want to change (contact details, prices,
  *  menu items, hours, reviews, gallery photos) lives in this single file.
@@ -18,38 +18,88 @@ const unsplash = (id, w = 1200) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`
 
 export const business = {
-  name: 'Bhabhare Cakes & Cafe',
-  shortName: 'Bhabhare',
-  tagline: 'Fresh cakes. Good coffee. Happy moments.',
+  name: "Cake's N Cafe",
+  shortName: "Cake's N Cafe",
+  tagline: 'Treasure of happinesses.',
   // --- EDITABLE DEMO CONTACT INFO ---
   phoneDisplay: '+91 98765 43210',
   phoneHref: 'tel:+919876543210',
   whatsappNumber: '919876543210', // digits only, country code first
   whatsappDisplay: '+91 98765 43210',
   addressLines: ['Shop No. 4, Sundarban Complex', 'MG Road, Nashik, Maharashtra 422001'],
-  mapsUrl: 'https://maps.google.com/?q=Bhabhare+Cakes+and+Cafe+Nashik',
+  mapsUrl: 'https://maps.google.com/?q=Cakes+N+Cafe+Nashik',
   hoursLabel: 'Monday – Sunday',
   hoursTime: '10:00 AM – 10:00 PM',
   instagramUrl: 'https://instagram.com/', // placeholder — replace with real handle
-  email: 'hello@bhabharecakes.example',
+  email: 'hello@cakesncafe.example',
 }
 
+// Real routes (multi-page site) — used identically by the desktop nav,
+// mobile menu, and (plus Order) the footer via React Router's NavLink/Link.
 export const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'Menu', href: '#menu' },
-  { label: 'Cakes', href: '#custom-cakes' },
-  { label: 'About', href: '#why-us' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'Cakes', to: '/cakes' },
+  { label: 'Custom Cakes', to: '/custom-cakes' },
+  { label: 'Cafe Menu', to: '/cafe-menu' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'About', to: '/about' },
+  { label: 'Why Us', to: '/why-bhabhare' },
+  { label: 'Testimonials', to: '/testimonials' },
+  { label: 'Contact', to: '/contact' },
+]
+
+// Footer shows everything the nav does, plus the Order page.
+export const footerLinks = [...navLinks, { label: 'Order', to: '/order' }]
+
+// Homepage hero carousel — each slide is its own clickable destination.
+// Images are reused from elsewhere in this file's photo set (already
+// verified, on-brand photography) rather than sourcing new ones.
+export const heroSlides = [
+  {
+    image: unsplash('1578985545062-69928b1d9587', 1600),
+    title: 'Chocolate Truffle Cake',
+    description: 'Rich cocoa sponge layered with silky chocolate ganache.',
+    cta: 'Explore Cakes',
+    route: '/cakes',
+  },
+  {
+    image: unsplash('1621303837174-89787a7d4729', 1600),
+    title: 'Made For Your Celebrations',
+    description: 'Birthdays, anniversaries or just because — a cake designed around you.',
+    cta: 'Create Your Cake',
+    route: '/custom-cakes',
+  },
+  {
+    image: unsplash('1497636577773-f1231844b336', 1600),
+    title: 'Good Cakes Deserve Good Coffee',
+    description: 'Coffee, pastries and cafe favourites, made fresh every day.',
+    cta: 'Explore Cafe Menu',
+    route: '/cafe-menu',
+  },
+  {
+    image: unsplash('1611293388250-580b08c4a145', 1600),
+    title: 'A Cake For Every Occasion',
+    description: 'From birthdays to anniversaries, freshly baked and beautifully finished.',
+    cta: 'Browse Cakes',
+    route: '/cakes',
+  },
+  {
+    image: unsplash('1517433670267-08bbd4be890f', 1600),
+    title: "Step Inside Cake's N Cafe",
+    description: 'Drop by for a coffee, a pastry, or to plan your next celebration.',
+    cta: 'Visit Us',
+    route: '/contact',
+  },
 ]
 
 export const categoryStrip = [
-  { label: 'Cakes', icon: 'Cake', image: unsplash('1578985545062-69928b1d9587', 200) },
-  { label: 'Pastries', icon: 'Croissant', image: unsplash('1555507036-ab1f4038808a', 200) },
-  { label: 'Desserts', icon: 'IceCreamCone', image: unsplash('1551024506-0bccd828d307', 200) },
-  { label: 'Coffee', icon: 'Coffee', image: unsplash('1497636577773-f1231844b336', 200) },
-  { label: 'Beverages', icon: 'CupSoda', image: unsplash('1497534446932-c925b458314e', 200) },
-  { label: 'Snacks', icon: 'Sandwich', image: unsplash('1553909489-cd47e0907980', 200) },
+  { label: 'Cakes', icon: 'Cake', to: '/cakes', image: unsplash('1578985545062-69928b1d9587', 200) },
+  { label: 'Custom Cakes', icon: 'PartyPopper', to: '/custom-cakes', image: unsplash('1621303837174-89787a7d4729', 200) },
+  { label: 'Pastries', icon: 'Croissant', to: '/cafe-menu', image: unsplash('1555507036-ab1f4038808a', 200) },
+  { label: 'Desserts', icon: 'IceCreamCone', to: '/cafe-menu', image: unsplash('1551024506-0bccd828d307', 200) },
+  { label: 'Coffee', icon: 'Coffee', to: '/cafe-menu', image: unsplash('1497636577773-f1231844b336', 200) },
+  { label: 'Beverages', icon: 'CupSoda', to: '/cafe-menu', image: unsplash('1497534446932-c925b458314e', 200) },
+  { label: 'Cafe Snacks', icon: 'Sandwich', to: '/cafe-menu', image: unsplash('1553909489-cd47e0907980', 200) },
 ]
 
 export const products = [
@@ -57,6 +107,7 @@ export const products = [
     id: 'choco-truffle',
     name: 'Chocolate Truffle Cake',
     category: 'Cakes',
+    tag: 'Chocolate',
     description: 'Rich cocoa sponge layered with silky chocolate ganache.',
     price: 650,
     image: unsplash('1578985545062-69928b1d9587'),
@@ -65,6 +116,7 @@ export const products = [
     id: 'red-velvet',
     name: 'Red Velvet Cake',
     category: 'Cakes',
+    tag: 'Classic',
     description: 'Velvety cocoa sponge with cream cheese frosting.',
     price: 700,
     image: unsplash('1621303837174-89787a7d4729'),
@@ -73,6 +125,7 @@ export const products = [
     id: 'black-forest',
     name: 'Black Forest Cake',
     category: 'Cakes',
+    tag: 'Chocolate',
     description: 'Classic dark chocolate sponge, whipped cream & cherries.',
     price: 600,
     image: unsplash('1602351447937-745cb720612f'),
@@ -81,9 +134,28 @@ export const products = [
     id: 'pineapple-cake',
     name: 'Pineapple Cake',
     category: 'Cakes',
+    tag: 'Classic',
     description: 'Light vanilla sponge with fresh cream and fruit chunks.',
     price: 550,
     image: unsplash('1611293388250-580b08c4a145'),
+  },
+  {
+    id: 'butterscotch',
+    name: 'Butterscotch Cake',
+    category: 'Cakes',
+    tag: 'Classic',
+    description: 'Caramelised butterscotch sponge with praline crunch.',
+    price: 600,
+    image: unsplash('1572897305697-f8adb93dae8f'),
+  },
+  {
+    id: 'rasmalai-cake',
+    name: 'Rasmalai Cake',
+    category: 'Cakes',
+    tag: 'Fusion',
+    description: 'A fusion favourite — pale malai cream with a hint of cardamom.',
+    price: 650,
+    image: unsplash('1757519740947-eef07a74c4ab'),
   },
   {
     id: 'choco-pastry',
@@ -127,10 +199,10 @@ export const customCakeCategories = [
     image: unsplash('1621303837174-89787a7d4729', 900),
   },
   {
-    id: 'custom',
-    label: 'Custom Cakes',
-    description: 'Your idea, your flavours — we bring it to life.',
-    image: unsplash('1588195538326-c5b1e9f80a1b', 900),
+    id: 'theme',
+    label: 'Theme Cakes',
+    description: 'From cartoons to cricket — any theme, any age.',
+    image: unsplash('1571506165871-ee72a35bc9d4', 900),
   },
   {
     id: 'anniversary',
@@ -139,12 +211,50 @@ export const customCakeCategories = [
     image: unsplash('1565958011703-44f9829ba187', 900),
   },
   {
-    id: 'theme',
-    label: 'Theme Cakes',
-    description: 'From cartoons to cricket — any theme, any age.',
-    image: unsplash('1571506165871-ee72a35bc9d4', 900),
+    id: 'custom',
+    label: 'Custom Cakes',
+    description: 'Your idea, your flavours — we bring it to life.',
+    image: unsplash('1588195538326-c5b1e9f80a1b', 900),
   },
 ]
+
+// Products shown in the "Customer Favourites" section — a curated subset of
+// `products`, referenced by id so it always reflects the current data/prices.
+export const bestsellerProductIds = [
+  'choco-truffle',
+  'red-velvet',
+  'butterscotch',
+  'black-forest',
+  'choco-pastry',
+  'cold-coffee',
+]
+
+// Cafe-menu highlights shown as a compact list (not priced product cards) in
+// the "Stay For The Coffee" section.
+export const cafeMenuHighlights = [
+  { label: 'Coffee', icon: 'Coffee' },
+  { label: 'Cold Coffee', icon: 'CupSoda' },
+  { label: 'Sandwiches', icon: 'Sandwich' },
+  { label: 'Pizza', icon: 'Pizza' },
+  { label: 'Snacks', icon: 'Cookie' },
+  { label: 'Desserts', icon: 'IceCreamCone' },
+]
+
+export const brandStory = {
+  eyebrow: 'Our Story',
+  heading: 'Made With Care',
+  paragraphs: [
+    "Cake's N Cafe is about freshly baked cakes, desserts and cafe favourites, made for everyday cravings and the moments worth celebrating.",
+    'Every cake is baked to order and finished by hand — simple ingredients, done properly.',
+  ],
+  image: unsplash('1517686469429-8bdb88b9f907', 1100),
+}
+
+export const promoStrip = {
+  heading: 'Planning a Celebration?',
+  subtext: 'Order your custom cake in advance.',
+  cta: 'Enquire Now',
+}
 
 export const occasionOptions = [
   'Birthday',
@@ -169,44 +279,32 @@ export const cakeTypeOptions = [
 export const whyBhabhare = [
   {
     icon: 'Wheat',
-    title: 'Fresh Ingredients',
-    description: 'Real butter, fresh cream and quality cocoa — every single time.',
+    title: 'Freshly Baked',
+    description: 'Baked in small batches so what you get is never left over.',
+    image: unsplash('1517686469429-8bdb88b9f907', 900),
   },
   {
     icon: 'Flame',
-    title: 'Made Fresh Daily',
-    description: 'Baked in small batches so what you get is never left over.',
+    title: 'Quality Ingredients',
+    description: 'Real butter, fresh cream and quality cocoa — every single time.',
+    image: unsplash('1481391319762-47dff72954d9', 900),
   },
   {
     icon: 'PenTool',
-    title: 'Custom Designs',
+    title: 'Custom Cakes',
     description: 'From simple to elaborate — we design around your vision.',
+    image: unsplash('1588195538326-c5b1e9f80a1b', 900),
   },
   {
     icon: 'PartyPopper',
-    title: 'Perfect for Celebrations',
+    title: 'Made For Celebrations',
     description: 'Birthdays, anniversaries, and everyday little wins.',
+    image: unsplash('1621303837174-89787a7d4729', 900),
   },
 ]
 
-export const cafeExperienceImages = [
-  {
-    image: unsplash('1442512595331-e89e73853f31', 1000),
-    label: 'Fresh brews, made to order',
-  },
-  {
-    image: unsplash('1521017432531-fbd92d768814', 1000),
-    label: 'A cosy corner to sit and stay a while',
-  },
-  {
-    image: unsplash('1509365465985-25d11c17e812', 1000),
-    label: 'Warm pastries, baked every morning',
-  },
-  {
-    image: unsplash('1517433670267-08bbd4be890f', 1000),
-    label: 'Our counter, always freshly stocked',
-  },
-]
+// Large image for the "Stay For The Coffee" cafe section.
+export const cafeSectionImage = unsplash('1521017432531-fbd92d768814', 1100)
 
 export const galleryImages = [
   { image: unsplash('1464195244916-405fa0a82545', 800), alt: 'Freshly baked cookies in a basket', tall: false },
@@ -265,7 +363,7 @@ export const testimonials = [
   },
 ]
 
-export const heroBadge = 'BAKED FRESH • MADE WITH LOVE'
+export const heroBadge = "CAKE'S N CAFE"
 
 export const heroImages = {
   main: unsplash('1578985545062-69928b1d9587', 1100),

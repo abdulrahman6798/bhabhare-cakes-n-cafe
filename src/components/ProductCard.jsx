@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { Plus } from 'lucide-react'
 import { useOrderModal } from '../hooks/OrderModalContext.jsx'
 
 export default function ProductCard({ product, index = 0 }) {
@@ -7,19 +6,19 @@ export default function ProductCard({ product, index = 0 }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.45, delay: (index % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ y: -5 }}
-      className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-card ring-1 ring-black/[0.03] transition-shadow duration-300 hover:shadow-lift"
+      whileHover={{ y: -4 }}
+      className="group flex flex-col overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-card transition-shadow duration-300 hover:shadow-lift"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={product.image}
           alt={product.name}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.08]"
+          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
         />
         <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-plum-700 shadow-sm backdrop-blur">
           {product.category}
@@ -35,10 +34,9 @@ export default function ProductCard({ product, index = 0 }) {
           <button
             type="button"
             onClick={() => openOrderModal(product.name)}
-            className="inline-flex items-center gap-1.5 rounded-full bg-plum-950 px-3.5 py-2 text-[12.5px] font-semibold text-white transition-colors duration-200 hover:bg-berry-600"
+            className="rounded-full bg-plum-950 px-4 py-2 text-[12.5px] font-semibold text-white transition-colors duration-200 hover:bg-berry-600"
           >
-            <Plus size={14} strokeWidth={2.5} />
-            Add to Order
+            Order Now
           </button>
         </div>
       </div>

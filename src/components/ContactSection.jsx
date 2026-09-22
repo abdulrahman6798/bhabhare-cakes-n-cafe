@@ -2,17 +2,19 @@ import { MapPin, Phone, MessageCircle, Clock } from 'lucide-react'
 import Reveal from './ui/Reveal.jsx'
 import SectionHeading from './ui/SectionHeading.jsx'
 import Button from './ui/Button.jsx'
+import Breadcrumb from './Breadcrumb.jsx'
 import { business } from '../data/cafeData.js'
 
-export default function ContactSection() {
+export default function ContactSection({ titleAs = 'h2', firstSection = false, breadcrumbLabel, description }) {
   const whatsappHref = `https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(
-    'Hi Bhabhare Cakes & Cafe! I would like to know more about your cakes.',
+    "Hi Cake's N Cafe! I would like to know more about your cakes.",
   )}`
 
   return (
-    <section id="contact" className="scroll-mt-20 bg-cream py-20 sm:py-28">
+    <section className={`bg-cream ${firstSection ? 'pb-20 pt-28 sm:pb-28 sm:pt-32' : 'py-20 sm:py-28'}`}>
       <div className="container">
-        <SectionHeading eyebrow="Visit Us" title="Find Us & Say Hello" />
+        {breadcrumbLabel && <Breadcrumb label={breadcrumbLabel} className="mb-5" />}
+        <SectionHeading eyebrow="Visit Us" title="Visit Cake's N Cafe" description={description} as={titleAs} />
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
           <Reveal className="flex flex-col justify-between rounded-3xl bg-plum-950 p-7 text-white sm:p-9">
@@ -49,14 +51,23 @@ export default function ContactSection() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button as="a" href={business.mapsUrl} target="_blank" rel="noopener noreferrer" variant="primary">
-                Get Directions
-              </Button>
-              <Button as="a" href={whatsappHref} target="_blank" rel="noopener noreferrer" variant="secondary" icon={false}>
-                WhatsApp Us
+              <Button as="a" href={business.mapsUrl} target="_blank" rel="noopener noreferrer" variant="primary" icon={false}>
+                <span className="inline-flex items-center gap-2">
+                  <MapPin size={16} className="transition-transform duration-200 group-hover:-translate-y-0.5" />
+                  Get Directions
+                </span>
               </Button>
               <Button as="a" href={business.phoneHref} variant="secondary" icon={false}>
-                Call Now
+                <span className="inline-flex items-center gap-2">
+                  <Phone size={15} className="transition-transform duration-200 group-hover:rotate-12" />
+                  Call Now
+                </span>
+              </Button>
+              <Button as="a" href={whatsappHref} target="_blank" rel="noopener noreferrer" variant="secondary" icon={false}>
+                <span className="inline-flex items-center gap-2">
+                  <MessageCircle size={15} className="transition-transform duration-200 group-hover:scale-110" />
+                  WhatsApp
+                </span>
               </Button>
             </div>
           </Reveal>

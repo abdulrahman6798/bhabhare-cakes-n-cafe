@@ -6,7 +6,7 @@ import { useOrderModal } from '../hooks/OrderModalContext.jsx'
 export default function FinalCTA() {
   const { openOrderModal } = useOrderModal()
   const whatsappHref = `https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(
-    'Hi Bhabhare Cakes & Cafe! I have something sweet in mind.',
+    "Hi Cake's N Cafe! I have something sweet in mind.",
   )}`
 
   return (
@@ -26,7 +26,7 @@ export default function FinalCTA() {
             Order Now
           </Button>
           <Button variant="secondary" size="lg" icon={false} as="a" href={whatsappHref} target="_blank" rel="noopener noreferrer">
-            Talk on WhatsApp
+            WhatsApp Us
           </Button>
         </Reveal>
       </div>

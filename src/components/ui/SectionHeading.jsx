@@ -6,8 +6,10 @@ export default function SectionHeading({
   description,
   align = 'center',
   light = false,
+  as = 'h2',
   className = '',
 }) {
+  const Tag = as
   const alignment = align === 'center' ? 'items-center text-center mx-auto' : 'items-start text-left'
   return (
     <div className={`flex flex-col ${alignment} max-w-2xl ${className}`}>
@@ -23,13 +25,13 @@ export default function SectionHeading({
         </Reveal>
       )}
       <Reveal delay={0.05}>
-        <h2
+        <Tag
           className={`balance font-display text-3xl font-semibold tracking-tight sm:text-4xl ${
             light ? 'text-white' : 'text-ink'
           }`}
         >
           {title}
-        </h2>
+        </Tag>
       </Reveal>
       {description && (
         <Reveal delay={0.1}>

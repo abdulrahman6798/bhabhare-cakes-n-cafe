@@ -17,6 +17,9 @@ export default [
         console: 'readonly',
         setTimeout: 'readonly',
         clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        Image: 'readonly',
       },
     },
     plugins: {

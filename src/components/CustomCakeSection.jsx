@@ -1,19 +1,40 @@
 import { motion } from 'framer-motion'
 import SectionHeading from './ui/SectionHeading.jsx'
 import Button from './ui/Button.jsx'
+import Breadcrumb from './Breadcrumb.jsx'
 import { customCakeCategories } from '../data/cafeData.js'
 import { useOrderModal } from '../hooks/OrderModalContext.jsx'
 
-export default function CustomCakeSection() {
+export default function CustomCakeSection({
+  titleAs = 'h2',
+  firstSection = false,
+  breadcrumbLabel,
+  showButton = true,
+  openModalOnClick = true,
+}) {
   const { openCustomCakeModal } = useOrderModal()
 
+  const handleCardClick = () => {
+    if (openModalOnClick) {
+      openCustomCakeModal()
+    } else {
+      document.getElementById('custom-cake-form')?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <section id="custom-cakes" className="scroll-mt-20 bg-white py-20 sm:py-28">
+    <section className={`bg-white ${firstSection ? 'pb-20 pt-28 sm:pb-28 sm:pt-32' : 'py-20 sm:py-28'}`}>
       <div className="container">
+        {breadcrumbLabel && (
+          <div className="mb-5 flex justify-center">
+            <Breadcrumb label={breadcrumbLabel} />
+          </div>
+        )}
         <SectionHeading
+          as={titleAs}
           eyebrow="Custom Cakes"
-          title="Made For Your Special Moments"
-          description="Birthdays, anniversaries, celebrations or just because — tell us what you're imagining and we'll turn it into a cake."
+          title="Your Cake. Your Idea."
+          description="Tell us what you're imagining and we'll create a cake made especially for your celebration."
         />
 
         <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
@@ -21,7 +42,7 @@ export default function CustomCakeSection() {
             <motion.button
               key={cat.id}
               type="button"
-              onClick={openCustomCakeModal}
+              onClick={handleCardClick}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -44,11 +65,13 @@ export default function CustomCakeSection() {
           ))}
         </div>
 
-        <div className="mt-11 flex justify-center">
-          <Button variant="berry" size="lg" onClick={openCustomCakeModal}>
-            Design Your Cake
-          </Button>
-        </div>
+        {showButton && (
+          <div className="mt-11 flex justify-center">
+            <Button variant="berry" size="lg" onClick={openCustomCakeModal}>
+              Create Your Cake
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   )
